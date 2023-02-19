@@ -1,15 +1,15 @@
 import "./App.css";
-import Main from "./containers/main/main";
 import ProductProvider from "./components/productProvider/productProvider";
+import Main from "./containers/main/main";
 
-function App() {
+const App = () => {
   return (
-    <ProductProvider>
-      <section>
+    <>
+      <ProductProvider>
         <Main />
-      </section>
-    </ProductProvider>
+      </ProductProvider>
+    </>
   );
-}
+};
 
 export default App;

@@ -1,5 +1,4 @@
 import Form from "../../components/Form/Form";
-
 const Main = () => {
   return (
     <>
