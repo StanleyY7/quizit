@@ -62,22 +62,28 @@ const Form = () => {
           <button>🎲</button>
           {data &&
             data.map((item) => {
+              const labels = ["A", "B", "C", "D"];
               const pElements = [
-                <p className={styles.correct}>A: {item.correctAnswer} </p>,
-                <p>B: {item.incorrectAnswers[0]}</p>,
-                <p>C: {item.incorrectAnswers[1]}</p>,
-                <p>D: {item.incorrectAnswers[2]}</p>,
+                <p className={styles.correct}>{item.correctAnswer} </p>,
+                <p>{item.incorrectAnswers[0]}</p>,
+                <p>{item.incorrectAnswers[1]}</p>,
+                <p> {item.incorrectAnswers[2]}</p>,
               ];
               const shuffledPElements = pElements.sort(
                 () => Math.random() - 0.5
               );
+              const answerElements = shuffledPElements.map((element, index) => (
+                <p className={styles.horizontal} key={index}>
+                  <strong>{labels[index]}: </strong> {element}
+                </p>
+              ));
               return (
                 <div key={item.id} className={styles.quiz__grid}>
                   <div>
                     <h3>Question</h3>
-                    <p>{item.question} </p>
+                    <p className={styles.question}>{item.question} </p>
                     <div className={styles.answer__wrapper}>
-                      {shuffledPElements}
+                      {answerElements}
                     </div>
                   </div>
                 </div>
