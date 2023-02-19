@@ -1,0 +1,44 @@
+button {
+  margin-bottom: 2rem;
+  transition: 2s ease;
+  &:hover {
+    transform: scale(1.025);
+  }
+}
+
+.quiz__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 0.125rem groove white;
+  border-radius: 2rem;
+  padding: 4rem;
+  margin-top: 1.25rem;
+  margin-bottom: 2rem;
+  transition: 0.75s ease;
+  &:hover {
+    transform: scale(1.025);
+    background-color: rgb(240, 248, 255);
+    color: black;
+  }
+}
+
+.answer__wrapper {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  > p {
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+  }
+}
+
+.correct {
+  color: green;
+}
+
+select {
+  padding: 0.725rem;
+  margin-right: 1rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+}
