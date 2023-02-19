@@ -1,6 +1,6 @@
 ## QuizIt
 
-Link
+Link https://stanleyy7.github.io/quizit/
 
 ![quizDisplay](https://user-images.githubusercontent.com/119549394/219944642-9fbc72c1-40a0-4f6c-8fbe-daa5b07699e3.png)
 
