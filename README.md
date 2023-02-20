@@ -2,7 +2,7 @@
 
 Link https://stanleyy7.github.io/quizit/
 
-![quizDisplay](https://user-images.githubusercontent.com/119549394/219944642-9fbc72c1-40a0-4f6c-8fbe-daa5b07699e3.png)
+![quizDisplay](https://user-images.githubusercontent.com/119549394/219950504-70557e91-d473-4e35-b5b8-24393919a9d2.png)
 
 ### Welcome to QuizIt!
 
