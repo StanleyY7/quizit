@@ -1,8 +1,9 @@
 import Form from "../../components/Form/Form";
+import styles from "./main.module.scss";
 const Main = () => {
   return (
     <>
-      <div>
+      <div className={styles.wrapper}>
         <h2>
           <mark>QuizIt.</mark>
         </h2>
