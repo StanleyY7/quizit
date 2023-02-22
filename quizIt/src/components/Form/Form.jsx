@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import { fetchData } from "../../services/fetch";
 import ProductContext from "../productContext/ProductContext";
 import styles from "../../containers/main/main.module.scss";
@@ -6,9 +6,13 @@ import styles from "../../containers/main/main.module.scss";
 const Form = () => {
   const [selectedCategory, setSelectedCategory] = useState("general_knowledge");
   const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
-  const [selectedResults, setSelectedResults] = useState(5);
+  const [selectedResults, setSelectedResults] = useState(1);
   const [selectedRegion, setSelectedRegion] = useState("AU");
+  const [display, setDisplay] = useState(false);
+  const [reveal, setReveal] = useState(false);
   const { data, setData } = useContext(ProductContext);
+  let shuffledAnswers = useRef([]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fetchData(
@@ -16,9 +20,13 @@ const Form = () => {
       selectedCategory,
       selectedDifficulty,
       selectedResults,
-      selectedRegion
+      selectedRegion,
+      setReveal,
+      setDisplay,
+      shuffledAnswers
     );
   };
+
   const handleCategory = (e) => {
     setSelectedCategory(e.target.value);
   };
@@ -31,6 +39,10 @@ const Form = () => {
   const handleRegion = (e) => {
     setSelectedRegion(e.target.value);
   };
+  const handleReveal = () => {
+    setReveal(true);
+  };
+
   return (
     <>
       <div>
@@ -49,6 +61,7 @@ const Form = () => {
             <option value={"hard"}>Hard</option>
           </select>
           <select onChange={handleResults}>
+            <option value={1}>1 Result</option>
             <option value={5}>5 Results</option>
             <option value={10}>10 Results</option>
             <option value={20}>20 Results</option>
@@ -64,19 +77,29 @@ const Form = () => {
             data.map((item) => {
               const labels = ["A", "B", "C", "D"];
               const pElements = [
-                <p className={styles.correct}>{item.correctAnswer} </p>,
-                <p>{item.incorrectAnswers[0]}</p>,
-                <p>{item.incorrectAnswers[1]}</p>,
-                <p> {item.incorrectAnswers[2]}</p>,
+                { text: item.correctAnswer, isCorrect: true },
+                { text: item.incorrectAnswers[0], isCorrect: false },
+                { text: item.incorrectAnswers[1], isCorrect: false },
+                { text: item.incorrectAnswers[2], isCorrect: false },
               ];
-              const shuffledPElements = pElements.sort(
-                () => Math.random() - 0.5
+              if (!shuffledAnswers.current.length) {
+                // Shuffle the answers only once
+                shuffledAnswers.current = pElements.sort(
+                  () => Math.random() - 0.5
+                );
+              }
+              const answerElements = shuffledAnswers.current.map(
+                (element, index) => (
+                  <p
+                    className={`${styles.horizontal} ${
+                      reveal && element.isCorrect ? styles.correct : ""
+                    }`}
+                    key={index}
+                  >
+                    <strong>{labels[index]}: </strong> {element.text}
+                  </p>
+                )
               );
-              const answerElements = shuffledPElements.map((element, index) => (
-                <p className={styles.horizontal} key={index}>
-                  <strong>{labels[index]}: </strong> {element}
-                </p>
-              ));
               return (
                 <div key={item.id} className={styles.quiz__grid}>
                   <div>
@@ -90,6 +113,7 @@ const Form = () => {
               );
             })}
         </form>
+        {display && <button onClick={handleReveal}>Reveal</button>}
       </div>
     </>
   );
