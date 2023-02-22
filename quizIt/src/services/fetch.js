@@ -2,7 +2,7 @@
 
 // Fetching data
 
-export const fetchData = (
+export const fetchData = async (
   setData,
   selectedCategory,
   selectedDifficulty,
@@ -13,7 +13,7 @@ export const fetchData = (
   shuffledAnswers
 ) => {
   setReveal(false);
-  const getData = async () => {
+  try {
     const response = await fetch(
       `https://the-trivia-api.com/api/questions?categories=${selectedCategory}&limit=${selectedResults}&region=${selectedRegion}&difficulty=${selectedDifficulty}`
     );
@@ -21,9 +21,8 @@ export const fetchData = (
     console.log(questionData);
     setData(questionData);
     shuffledAnswers.current = [];
-  };
-  getData();
-  setTimeout(() => {
-    setDisplay(true);
-  }, 400);
+    setDisplay(true); // Set the display state only after the data is loaded
+  } catch (error) {
+    console.error(error);
+  }
 };
