@@ -4,7 +4,9 @@ import ProductContext from "../productContext/ProductContext";
 import styles from "../../containers/main/main.module.scss";
 
 const Form = () => {
-  const [selectedCategory, setSelectedCategory] = useState("general_knowledge");
+  const [selectedCategory, setSelectedCategory] = useState(
+    "general_knowledge,music,arts_and_literature,film_and_tv,geography,history,science,society_and_culture"
+  );
   const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
   const [selectedResults, setSelectedResults] = useState(1);
   const [selectedRegion, setSelectedRegion] = useState("AU");
@@ -48,6 +50,13 @@ const Form = () => {
       <div>
         <form onSubmit={handleSubmit}>
           <select onChange={handleCategory}>
+            <option
+              value={
+                "general_knowledge,music,arts_and_literature,film_and_tv,geography,history,science,society_and_culture"
+              }
+            >
+              All Categories
+            </option>
             <option value={"general_knowledge"}>General Knowledge</option>
             <option value={"music"}>Music</option>
             <option value={"arts_and_literature"}>The Arts</option>
@@ -56,13 +65,6 @@ const Form = () => {
             <option value={"history"}>History</option>
             <option value={"science"}>Science</option>
             <option value={"society_and_culture"}>Society & Culture</option>
-            <option
-              value={
-                "general_knowledge,music,arts_and_literature,film_and_tv,geography,history,science,society_and_culture"
-              }
-            >
-              All Categories
-            </option>
           </select>
           <select onChange={handleDifficulty}>
             <option value={"easy"}>Easy</option>
