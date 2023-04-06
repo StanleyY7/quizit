@@ -8,6 +8,13 @@ Link https://stanleyy7.github.io/quizit/
 
 This side/hobby-project was made to assist people I know who host the occasional quiz for work/team-building activities and to also practice my existing skills. This SPA generates random quiz questions (for a variety of topics) and their answers (when the user clicks a button) by fetching data from The Trivia API and then displaying it onto a grid by mapping over the data.
 
+### Features
+
+- Fetch/Get of Trivia API Data
+- Context API State Management
+- Cypress Component Tests
+- Responsive
+
 ### Tech Stack
 - React
 - Javascript
